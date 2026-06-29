@@ -473,9 +473,8 @@ const submitRegister = () => {
 </script>
 
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 body {
-  font-family: 'Inter', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  font-family: 'PingFang SC', 'Microsoft YaHei', system-ui, sans-serif;
 }
 /* 消除浏览器默认聚焦黑框 */
 input:focus, button:focus {

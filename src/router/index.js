@@ -24,23 +24,17 @@ const authGuard = (to, from, next) => {
   }
 }
 
-// 访问根路径自动根据角色跳转对应首页
-const rootRedirect = (to, from, next) => {
-  const isLogin = localStorage.getItem('isLogin')
-  if (!isLogin) {
-    next('/login')
-    return
-  }
-  const role = localStorage.getItem('userRole')
-  if (role === '1') next('/student')
-  else if (role === '2') next('/teacher')
-  else next('/admin')
-}
-
 const routes = [
   {
     path: '/',
-    beforeEnter: rootRedirect
+    redirect: to => {
+      const isLogin = localStorage.getItem('isLogin')
+      if (!isLogin) return '/login'
+      const role = localStorage.getItem('userRole')
+      if (role === '1') return '/student'
+      else if (role === '2') return '/teacher'
+      return '/admin'
+    }
   },
   {
     path: '/login',

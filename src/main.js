@@ -7,7 +7,7 @@ import 'iconify-icon'
 import '../tailwind.css'
 
 const app = createApp(App)
-//app.config.compilerOptions.isCustomElement = (tag) => tag.includes('iconify-icon')
+app.config.compilerOptions.isCustomElement = (tag) => tag.includes('iconify-icon')
 app.use(router)
 app.use(ElementPlus)
 app.mount('#app')

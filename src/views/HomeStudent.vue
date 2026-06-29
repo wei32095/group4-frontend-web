@@ -50,10 +50,9 @@
         <span class="font-medium">单人自习室</span>
     </div>
 
-    <!-- 修复后的个人中心（关键：父级加.self，子级加.stop） -->
+    <!-- 【已修改】点击整行任意位置都能展开收起个人中心，移除@click.self -->
     <div>
-        <!-- @click.self：只有点击本行文字箭头区域才会展开/收起，点下方子菜单不触发 -->
-        <div class="sidebar-item flex items-center justify-between px-6 py-3 cursor-pointer hover:bg-gray-50 transition-colors" @click.self="toggleSubmenu">
+        <div class="sidebar-item flex items-center justify-between px-6 py-3 cursor-pointer hover:bg-gray-50 transition-colors" @click="toggleSubmenu($event)">
         <div class="flex items-center">
             <iconify-icon class="text-xl mr-3 group-hover:scale-110 transition-transform" icon="solar:user-circle-linear"></iconify-icon>
             <span class="font-medium">个人中心</span>
@@ -61,7 +60,7 @@
         <iconify-icon class="text-sm transition-transform duration-300" :class="subOpen?'rotate-180':''" icon="solar:alt-arrow-down-linear"></iconify-icon>
         </div>
         <div class="submenu-enter" :class="subOpen?'submenu-open':''">
-        <!-- 子菜单全部加.stop 阻断冒泡 -->
+        <!-- 子菜单@click.stop 阻止冒泡，点击子菜单不会关闭父下拉 -->
         <div class="pl-14 py-2 text-sm text-gray-600 hover:text-[#3D9B6E] cursor-pointer" @click.stop="switchPage('analysis')">学情分析</div>
         <div class="pl-14 py-2 text-sm text-gray-600 hover:text-[#3D9B6E] cursor-pointer" @click.stop="switchPage('flower')">青耘花卉培育</div>
         </div>
@@ -88,8 +87,9 @@
             <span class="absolute top-2 right-2 w-2 h-2 bg-red-500 rounded-full border-2 border-white"></span>
           </button>
         </div>
-        <div class="relative">
-          <div class="flex items-center space-x-3 cursor-pointer group" @click="toggleProfileMenu">
+        <!-- 头像外层增加 profile-wrap 用于精准区域判断 -->
+        <div class="relative profile-wrap">
+          <div class="flex items-center space-x-3 cursor-pointer group" @click="toggleProfileMenu($event)">
             <div class="text-right hidden sm:block">
               <div class="text-sm font-bold text-gray-700 group-hover:text-[#3D9B6E]">张同学</div>
             </div>
@@ -97,11 +97,11 @@
               <img alt="头像" class="w-full h-full rounded-full object-cover" src="https://picsum.photos/id/1005/100/100">
             </div>
           </div>
-          <div class="hidden absolute right-0 mt-3 w-48 bg-white rounded-xl shadow-xl border border-gray-50 py-2 z-50" :class="profileOpen?'block':'hidden'">
-            <div class="px-4 py-2 text-sm text-gray-600 hover:bg-gray-50 cursor-pointer flex items-center" @click="showToast('切换账号')">
+          <div class="absolute right-0 mt-3 w-48 bg-white rounded-xl shadow-xl border border-gray-50 py-2 z-50" :class="profileOpen?'block':'hidden'">
+            <div class="px-4 py-2 text-sm text-gray-600 hover:bg-gray-50 cursor-pointer flex items-center" @click="handleSwitchAccount">
               <iconify-icon class="mr-2" icon="solar:users-group-two-rounded-linear"></iconify-icon>切换账号
             </div>
-            <div class="px-4 py-2 text-sm text-red-500 hover:bg-red-50 cursor-pointer flex items-center" @click="logout">
+            <div class="px-4 py-2 text-sm text-red-500 hover:bg-red-50 cursor-pointer flex items-center" @click="handleLogout">
               <iconify-icon class="mr-2" icon="solar:logout-3-linear"></iconify-icon>退出登录
             </div>
           </div>
@@ -512,7 +512,7 @@
               </div>
               <div class="grid grid-cols-3 gap-4 w-full mt-12">
                 <div class="bg-blue-50/50 p-4 rounded-2xl border border-blue-100 text-center">
-                  <iconify icon="solar:water-drops-linear" class="text-xl text-blue-500"></iconify>
+                  <iconify-icon icon="solar:water-drops-linear" class="text-xl text-blue-500"></iconify-icon>
                   <div class="text-xs text-gray-500 mt-1">水分</div>
                   <div class="font-bold text-blue-600">70/100</div>
                 </div>
@@ -573,7 +573,7 @@
 </template>
 
 <script setup>
-import { ref, watch } from 'vue'
+import { ref, watch, onMounted, onUnmounted } from 'vue'
 import { useRouter } from 'vue-router'
 const router = useRouter()
 
@@ -598,9 +598,33 @@ const showToast = (msg, type='success') => {
   setTimeout(()=>toast.value.show=false, 2500)
 }
 
+// 外部点击关闭下拉菜单逻辑（已修复判断逻辑）
+const handleClickOutside = (e) => {
+  const target = e.target
+  // 判断是否点击个人中心区域
+  const clickInsideSubMenu = target.closest('.sidebar-item') || target.closest('.submenu-enter')
+  if (!clickInsideSubMenu) {
+    subOpen.value = false
+  }
+  // 判断是否点击头像下拉区域
+  const clickInsideProfile = target.closest('.profile-wrap')
+  if (!clickInsideProfile) {
+    profileOpen.value = false
+  }
+}
+
+onMounted(() => {
+  document.addEventListener('click', handleClickOutside)
+})
+
+onUnmounted(() => {
+  document.removeEventListener('click', handleClickOutside)
+})
+
 // 切换侧边页面
 const switchPage = (name) => {
   page.value = name
+  profileOpen.value = false
   const map = {
     courses:'我的课程',
     assignments:'我的作业',
@@ -612,19 +636,29 @@ const switchPage = (name) => {
   breadcrumb.value = map[name]
 }
 
-// 个人中心子菜单展开
-const toggleSubmenu = () => {
-  subOpen.value = !subOpen
+// 个人中心下拉展开收起（传入事件阻止冒泡）
+const toggleSubmenu = (e) => {
+  e.stopPropagation()
+  subOpen.value = !subOpen.value
+  profileOpen.value = false
 }
 
-// 头像下拉菜单
-const toggleProfileMenu = () => {
-  profileOpen.value = !profileOpen
+// 头像下拉菜单（传入事件阻止冒泡）
+const toggleProfileMenu = (e) => {
+  e.stopPropagation()
+  profileOpen.value = !profileOpen.value
+  subOpen.value = false
+}
+
+// 切换账号
+const handleSwitchAccount = () => {
+  profileOpen.value = false
+  showToast('切换账号')
 }
 
 // 加入课程
 const joinCourse = () => {
-  if(!course.value) return showToast('请输入6位课程码','error')
+  if(!courseCode.value) return showToast('请输入6位课程码','error')
   showToast('课程加入成功')
   courseCode.value = ''
 }
@@ -657,7 +691,8 @@ const readSingle = (e) => {
 }
 
 // 退出登录
-const logout = () => {
+const handleLogout = () => {
+  profileOpen.value = false
   localStorage.clear()
   router.push('/login')
   showToast('已退出登录')
@@ -665,9 +700,8 @@ const logout = () => {
 </script>
 
 <style scoped>
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap');
 body {
-  font-family: 'Noto Sans SC', system-ui, SimSun, Microsoft YaHei;
+  font-family: system-ui, SimSun, Microsoft YaHei, sans-serif;
 }
 .sidebar-item.active {
   background-color: #ecfdf5;
