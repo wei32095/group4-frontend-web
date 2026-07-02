@@ -13,16 +13,7 @@
           <!-- Logo + 平台名称 -->
           <div class="flex items-center gap-3 mb-8">
             <div class="w-10 h-10 bg-white rounded-lg flex items-center justify-center shadow-lg">
-              <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path d="M12 2C12 2 10 8 12 12C14 8 12 2 12 2Z" fill="#3D9B6E"></path>
-                <path d="M8 6C8 6 6 10 8 14C10 10 8 6 8 6Z" fill="#3D9B6E" opacity="0.7"></path>
-                <path d="M16 6C16 6 14 10 16 14C18 10 16 6 16 6Z" fill="#3D9B6E" opacity="0.7"></path>
-                <path d="M12 12V18" stroke="#3D9B6E" stroke-linecap="round" stroke-width="1.5"></path>
-                <path d="M5 22C5 22 7 18 10 19" fill="none" stroke="#3D9B6E" stroke-linecap="round" stroke-width="1.5"></path>
-                <path d="M19 22C19 22 17 18 14 19" fill="none" stroke="#3D9B6E" stroke-linecap="round" stroke-width="1.5"></path>
-                <ellipse cx="9.5" cy="15" fill="#3D9B6E" opacity="0.6" rx="2" ry="1" transform="rotate(-30 9.5 15)"></ellipse>
-                <ellipse cx="14.5" cy="14.5" fill="#3D9B6E" opacity="0.6" rx="2" ry="1" transform="rotate(30 14.5 14.5)"></ellipse>
-              </svg>
+              <img src="@/assets/logo.png" class="w-6 h-6 object-contain" alt="logo">
             </div>
             <span class="text-xl font-bold tracking-tight">青耘课堂-智慧教学平台</span>
           </div>
@@ -44,13 +35,13 @@
           <div class="mt-6 flex items-center gap-3">
             <div class="flex -space-x-2">
               <div class="w-8 h-8 rounded-full border-2 border-white bg-blue-200 flex items-center justify-center overflow-hidden">
-                <iconify-icon class="text-blue-600 text-base" icon="mdi:account"></iconify-icon>
+                <Icon class="text-blue-600 text-base" icon="mdi:account"></Icon>
               </div>
               <div class="w-8 h-8 rounded-full border-2 border-white bg-green-200 flex items-center justify-center overflow-hidden">
-                <iconify-icon class="text-green-600 text-base" icon="mdi:account"></iconify-icon>
+                <Icon class="text-green-600 text-base" icon="mdi:account"></Icon>
               </div>
               <div class="w-8 h-8 rounded-full border-2 border-white bg-yellow-200 flex items-center justify-center overflow-hidden">
-                <iconify-icon class="text-yellow-600 text-base" icon="mdi:account"></iconify-icon>
+                <Icon class="text-yellow-600 text-base" icon="mdi:account"></Icon>
               </div>
             </div>
             <span class="text-sm text-white">已有 50,000+ 学员加入我们</span>
@@ -103,7 +94,7 @@
             <div class="space-y-1">
               <label class="text-sm font-medium text-gray-700 ml-1">账号</label>
               <div class="flex items-center border border-gray-200 rounded-xl px-4 py-3 focus-within:border-[#3D9B6E] focus-within:ring-[3px] focus-within:ring-[rgba(61,155,110,0.1)] bg-gray-50 transition-all">
-                <iconify-icon class="text-gray-400 mr-3 text-xl" icon="mdi:account-outline"></iconify-icon>
+                <Icon class="text-gray-400 mr-3 text-xl" icon="mdi:account-outline"></Icon>
                 <input
                   v-model="loginPwdForm.account"
                   class="bg-transparent flex-1 outline-none text-gray-800 placeholder-gray-400"
@@ -115,7 +106,7 @@
             <div class="space-y-1">
               <label class="text-sm font-medium text-gray-700 ml-1">密码</label>
               <div class="flex items-center border border-gray-200 rounded-xl px-4 py-3 focus-within:border-[#3D9B6E] focus-within:ring-[3px] focus-within:ring-[rgba(61,155,110,0.1)] bg-gray-50 transition-all">
-                <iconify-icon class="text-gray-400 mr-3 text-xl" icon="mdi:lock-outline"></iconify-icon>
+                <Icon class="text-gray-400 mr-3 text-xl" icon="mdi:lock-outline"></Icon>
                 <input
                   v-model="loginPwdForm.password"
                   :type="pwdVisible ? 'text' : 'password'"
@@ -124,7 +115,7 @@
                   required
                 />
                 <button type="button" class="text-gray-400 hover:text-gray-600" @click="pwdVisible = !pwdVisible">
-                  <iconify-icon class="text-xl" :icon="pwdVisible ? 'mdi:eye-outline' : 'mdi:eye-off-outline'" :class="pwdVisible ? 'text-[#3D9B6E]' : ''"></iconify-icon>
+                  <Icon class="text-xl" :icon="pwdVisible ? 'mdi:eye-outline' : 'mdi:eye-off-outline'" :class="pwdVisible ? 'text-[#3D9B6E]' : ''"></Icon>
                 </button>
               </div>
             </div>
@@ -149,7 +140,7 @@
             <div class="space-y-1">
               <label class="text-sm font-medium text-gray-700 ml-1">手机号</label>
               <div class="flex items-center border border-gray-200 rounded-xl px-4 py-3 focus-within:border-[#3D9B6E] focus-within:ring-[3px] focus-within:ring-[rgba(61,155,110,0.1)] bg-gray-50 transition-all">
-                <iconify-icon class="text-gray-400 mr-3 text-xl" icon="mdi:cellphone"></iconify-icon>
+                <Icon class="text-gray-400 mr-3 text-xl" icon="mdi:cellphone"></Icon>
                 <input
                   v-model="loginCodeForm.phone"
                   class="bg-transparent flex-1 outline-none text-gray-800 placeholder-gray-400"
@@ -163,7 +154,7 @@
               <label class="text-sm font-medium text-gray-700 ml-1">验证码</label>
               <div class="flex gap-3">
                 <div class="flex-1 flex items-center border border-gray-200 rounded-xl px-4 py-3 focus-within:border-[#3D9B6E] focus-within:ring-[3px] focus-within:ring-[rgba(61,155,110,0.1)] bg-gray-50 transition-all">
-                  <iconify-icon class="text-gray-400 mr-3 text-xl" icon="mdi:shield-check-outline"></iconify-icon>
+                  <Icon class="text-gray-400 mr-3 text-xl" icon="mdi:shield-check-outline"></Icon>
                   <input
                     v-model="loginCodeForm.code"
                     class="bg-transparent flex-1 outline-none text-gray-800 placeholder-gray-400"
@@ -181,6 +172,7 @@
                   {{ loginCodeCount > 0 ? `${loginCodeCount}s 重发` : '获取验证码' }}
                 </button>
               </div>
+              <span v-if="loginCodeForm.code" class="text-xs text-gray-400 ml-1">验证码: <span class="text-[#3D9B6E] font-mono">{{ loginCodeForm.code }}</span></span>
             </div>
             <button
               type="submit"
@@ -200,13 +192,13 @@
             </div>
             <div class="flex justify-center gap-6">
               <button class="w-12 h-12 rounded-full border border-gray-100 flex items-center justify-center hover:bg-gray-50 transition-all text-green-500">
-                <iconify-icon class="text-2xl" icon="ri:wechat-fill"></iconify-icon>
+                <Icon class="text-2xl" icon="ri:wechat-fill"></Icon>
               </button>
               <button class="w-12 h-12 rounded-full border border-gray-100 flex items-center justify-center hover:bg-gray-50 transition-all text-blue-500">
-                <iconify-icon class="text-2xl" icon="ri:qq-fill"></iconify-icon>
+                <Icon class="text-2xl" icon="ri:qq-fill"></Icon>
               </button>
               <button class="w-12 h-12 rounded-full border border-gray-100 flex items-center justify-center hover:bg-gray-50 transition-all text-gray-700">
-                <iconify-icon class="text-2xl" icon="ri:github-fill"></iconify-icon>
+                <Icon class="text-2xl" icon="ri:github-fill"></Icon>
               </button>
             </div>
           </div>
@@ -224,7 +216,7 @@
                   :class="userRole === '1' ? 'border-2 border-[#3D9B6E] bg-green-50' : 'border-2 border-gray-200'"
                   @click="userRole = '1'"
                 >
-                  <iconify-icon class="text-xl" :class="userRole === '1' ? 'text-[#3D9B6E]' : 'text-gray-400'" icon="mdi:account-school-outline"></iconify-icon>
+                  <Icon class="text-xl" :class="userRole === '1' ? 'text-[#3D9B6E]' : 'text-gray-400'" icon="mdi:account-school-outline"></Icon>
                   <span class="font-medium" :class="userRole === '1' ? 'text-[#3D9B6E]' : 'text-gray-500'">注册为学生</span>
                   <input v-model="userRole" value="1" name="role" type="radio" class="hidden">
                 </label>
@@ -233,7 +225,7 @@
                   :class="userRole === '2' ? 'border-2 border-[#3D9B6E] bg-green-50' : 'border-2 border-gray-200'"
                   @click="userRole = '2'"
                 >
-                  <iconify-icon class="text-xl" :class="userRole === '2' ? 'text-[#3D9B6E]' : 'text-gray-400'" icon="mdi:chalkboard-teacher"></iconify-icon>
+                  <Icon class="text-xl" :class="userRole === '2' ? 'text-[#3D9B6E]' : 'text-gray-400'" icon="mdi:chalkboard-teacher"></Icon>
                   <span class="font-medium" :class="userRole === '2' ? 'text-[#3D9B6E]' : 'text-gray-500'">注册为老师</span>
                   <input v-model="userRole" value="2" name="role" type="radio" class="hidden">
                 </label>
@@ -243,7 +235,7 @@
             <div class="space-y-1">
               <label class="text-sm font-medium text-gray-700 ml-1">手机号</label>
               <div class="flex items-center border border-gray-200 rounded-xl px-4 py-3 focus-within:border-[#3D9B6E] focus-within:ring-[3px] focus-within:ring-[rgba(61,155,110,0.1)] bg-gray-50 transition-all">
-                <iconify-icon class="text-gray-400 mr-3 text-xl" icon="mdi:cellphone"></iconify-icon>
+                <Icon class="text-gray-400 mr-3 text-xl" icon="mdi:cellphone"></Icon>
                 <input
                   v-model="regForm.phone"
                   class="bg-transparent flex-1 outline-none text-gray-800 placeholder-gray-400"
@@ -255,10 +247,23 @@
             </div>
 
             <div class="space-y-1">
+              <label class="text-sm font-medium text-gray-700 ml-1">姓名</label>
+              <div class="flex items-center border border-gray-200 rounded-xl px-4 py-3 focus-within:border-[#3D9B6E] focus-within:ring-[3px] focus-within:ring-[rgba(61,155,110,0.1)] bg-gray-50 transition-all">
+                <Icon class="text-gray-400 mr-3 text-xl" icon="mdi:account-outline"></Icon>
+                <input
+                  v-model="regForm.name"
+                  class="bg-transparent flex-1 outline-none text-gray-800 placeholder-gray-400"
+                  placeholder="请输入姓名"
+                  required
+                />
+              </div>
+            </div>
+
+            <div class="space-y-1">
               <label class="text-sm font-medium text-gray-700 ml-1">验证码</label>
               <div class="flex gap-3">
                 <div class="flex-1 flex items-center border border-gray-200 rounded-xl px-4 py-3 focus-within:border-[#3D9B6E] focus-within:ring-[3px] focus-within:ring-[rgba(61,155,110,0.1)] bg-gray-50 transition-all">
-                  <iconify-icon class="text-gray-400 mr-3 text-xl" icon="mdi:shield-check-outline"></iconify-icon>
+                  <Icon class="text-gray-400 mr-3 text-xl" icon="mdi:shield-check-outline"></Icon>
                   <input
                     v-model="regForm.code"
                     class="bg-transparent flex-1 outline-none text-gray-800 placeholder-gray-400"
@@ -276,12 +281,13 @@
                   {{ regCodeCount > 0 ? `${regCodeCount}s 重发` : '获取验证码' }}
                 </button>
               </div>
+              <span v-if="regForm.code" class="text-xs text-gray-400 ml-1">验证码: <span class="text-[#3D9B6E] font-mono">{{ regForm.code }}</span></span>
             </div>
 
             <div class="space-y-1">
               <label class="text-sm font-medium text-gray-700 ml-1">设置密码</label>
               <div class="flex items-center border border-gray-200 rounded-xl px-4 py-3 focus-within:border-[#3D9B6E] focus-within:ring-[3px] focus-within:ring-[rgba(61,155,110,0.1)] bg-gray-50 transition-all">
-                <iconify-icon class="text-gray-400 mr-3 text-xl" icon="mdi:lock-outline"></iconify-icon>
+                <Icon class="text-gray-400 mr-3 text-xl" icon="mdi:lock-outline"></Icon>
                 <input
                   v-model="regForm.pwd"
                   :type="regPwdVisible ? 'text' : 'password'"
@@ -291,7 +297,7 @@
                   required
                 />
                 <button type="button" class="text-gray-400 hover:text-gray-600" @click="regPwdVisible = !regPwdVisible">
-                  <iconify-icon class="text-xl" :icon="regPwdVisible ? 'mdi:eye-outline' : 'mdi:eye-off-outline'" :class="regPwdVisible ? 'text-[#3D9B6E]' : ''"></iconify-icon>
+                  <Icon class="text-xl" :icon="regPwdVisible ? 'mdi:eye-outline' : 'mdi:eye-off-outline'" :class="regPwdVisible ? 'text-[#3D9B6E]' : ''"></Icon>
                 </button>
               </div>
             </div>
@@ -299,7 +305,7 @@
             <div class="space-y-1">
               <label class="text-sm font-medium text-gray-700 ml-1">确认密码</label>
               <div class="flex items-center border border-gray-200 rounded-xl px-4 py-3 focus-within:border-[#3D9B6E] focus-within:ring-[3px] focus-within:ring-[rgba(61,155,110,0.1)] bg-gray-50 transition-all">
-                <iconify-icon class="text-gray-400 mr-3 text-xl" icon="mdi:lock-check-outline"></iconify-icon>
+                <Icon class="text-gray-400 mr-3 text-xl" icon="mdi:lock-check-outline"></Icon>
                 <input
                   v-model="regForm.pwdConfirm"
                   class="bg-transparent flex-1 outline-none text-gray-800 placeholder-gray-400"
@@ -346,7 +352,7 @@
     class="fixed bottom-10 left-1/2 -translate-x-1/2 bg-gray-800 text-white px-6 py-3 rounded-full text-sm shadow-2xl z-50 flex items-center gap-2 transition-opacity duration-300 pointer-events-none"
     :style="{opacity: toastShow ? 1 : 0}"
   >
-    <iconify-icon class="text-lg" :class="toastType==='success'?'text-green-400':'text-red-400'" :icon="toastType==='success'?'mdi:check-circle':'mdi:alert-circle'"></iconify-icon>
+    <Icon class="text-lg" :class="toastType==='success'?'text-green-400':'text-red-400'" :icon="toastType==='success'?'mdi:check-circle':'mdi:alert-circle'"></Icon>
     <span>{{ toastMsg }}</span>
   </div>
 </template>
@@ -354,6 +360,7 @@
 <script setup>
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
+import request from '@/utils/request'
 const router = useRouter()
 
 // 页面切换标记：true=登录页 false=注册页
@@ -380,7 +387,8 @@ const regForm = ref({
   phone: '',
   code: '',
   pwd: '',
-  pwdConfirm: ''
+  pwdConfirm: '',
+  name: ''
 })
 
 // ========== Toast弹窗方法 ==========
@@ -395,80 +403,120 @@ const showToast = (msg, type = 'success') => {
 }
 
 // ========== 验证码倒计时通用封装 ==========
-const startCountDown = (countRef, phoneValue) => {
-  if (!/^1[3-9]\d{9}$/.test(phoneValue)) {
-    showToast('请输入有效的手机号', 'error')
-    return
-  }
+const startCountDown = (countRef) => {
   countRef.value = 60
-  showToast('验证码已发送')
   const timer = setInterval(() => {
     countRef.value--
     if (countRef.value <= 0) clearInterval(timer)
   }, 1000)
 }
-const getLoginCode = () => startCountDown(loginCodeCount, loginCodeForm.value.phone)
-const getRegCode = () => startCountDown(regCodeCount, regForm.value.phone)
 
-// ===================== 模拟账号数据库（role：1学生 2教师 3管理员） =====================
-const userDB = [
-  { account: 'student1', pwd: '123456', role: '1' },
-  { account: 'teacher1', pwd: '123456', role: '2' },
-  { account: 'admin1', pwd: '123456', role: '3' }
-]
-
-// ========== 账号密码登录提交（按数字角色自动跳转对应首页） ==========
-const submitLoginPwd = () => {
-  loading.value = true
-  setTimeout(() => {
-    loading.value = false
-    const user = userDB.find(item =>
-      item.account === loginPwdForm.value.account &&
-      item.pwd === loginPwdForm.value.password
-    )
-    if (!user) {
-      showToast('账号或密码错误', 'error')
-      return
-    }
-    // 存储登录状态 + 数字角色标识
-    localStorage.setItem('isLogin', '1')
-    localStorage.setItem('userRole', user.role)
-    showToast('登录成功，自动跳转对应首页')
-    // 根据 role 1/2/3 分别跳转
-    if (user.role === '1') {
-      router.push('/student')
-    } else if (user.role === '2') {
-      router.push('/teacher')
-    } else {
-      router.push('/admin')
-    }
-  }, 1200)
+// ========== 获取登录验证码 ==========
+const getLoginCode = async () => {
+  if (!/^1[3-9]\d{9}$/.test(loginCodeForm.value.phone)) {
+    showToast('请输入有效的手机号', 'error')
+    return
+  }
+  try {
+    const res = await request.post('/qingyun/verify-code/send', { phone: loginCodeForm.value.phone })
+    loginCodeForm.value.code = res.data
+    showToast('验证码已发送')
+    startCountDown(loginCodeCount)
+  } catch (error) {
+    showToast(error.message || '发送验证码失败', 'error')
+  }
 }
 
-// ========== 验证码登录（默认角色1学生） ==========
-const submitLoginCode = () => {
-  loading.value = true
-  setTimeout(() => {
-    loading.value = false
-    localStorage.setItem('isLogin', '1')
-    localStorage.setItem('userRole', '1')
-    showToast('验证码登录成功')
+// ========== 获取注册验证码 ==========
+const getRegCode = async () => {
+  if (!/^1[3-9]\d{9}$/.test(regForm.value.phone)) {
+    showToast('请输入有效的手机号', 'error')
+    return
+  }
+  try {
+    const res = await request.post('/qingyun/verify-code/send', { phone: regForm.value.phone })
+    regForm.value.code = res.data
+    showToast('验证码已发送')
+    startCountDown(regCodeCount)
+  } catch (error) {
+    showToast(error.message || '发送验证码失败', 'error')
+  }
+}
+
+// ========== 处理登录成功 ==========
+const handleLoginSuccess = (data) => {
+  localStorage.setItem('isLogin', '1')
+  localStorage.setItem('token', data.token)
+  localStorage.setItem('userType', data.userType)
+  localStorage.setItem('userRole', String(data.userInfo.role))
+  localStorage.setItem('userInfo', JSON.stringify(data.userInfo))
+  showToast('登录成功，自动跳转')
+  
+  if (data.userType === 'STUDENT') {
     router.push('/student')
-  }, 1200)
+  } else if (data.userType === 'TEACHER') {
+    router.push('/teacher')
+  } else if (data.userType === 'ADMIN') {
+    router.push('/admin')
+  } else {
+    router.push('/student')
+  }
 }
 
-// ========== 注册提交 + 注册成功自动切回登录 ==========
-const submitRegister = () => {
+// ========== 账号密码登录提交 ==========
+const submitLoginPwd = async () => {
+  loading.value = true
+  try {
+    const res = await request.post('/qingyun/login', {
+      phone: loginPwdForm.value.account,
+      password: loginPwdForm.value.password
+    })
+    handleLoginSuccess(res.data)
+  } catch (error) {
+    showToast(error.message || '账号或密码错误', 'error')
+  } finally {
+    loading.value = false
+  }
+}
+
+// ========== 验证码登录 ==========
+const submitLoginCode = async () => {
+  loading.value = true
+  try {
+    const res = await request.post('/qingyun/login/verify-code', {
+      phone: loginCodeForm.value.phone,
+      code: loginCodeForm.value.code
+    })
+    handleLoginSuccess(res.data)
+  } catch (error) {
+    showToast(error.message || '验证码错误', 'error')
+  } finally {
+    loading.value = false
+  }
+}
+
+// ========== 注册提交 ==========
+const submitRegister = async () => {
   if (regForm.value.pwd !== regForm.value.pwdConfirm) {
     showToast('两次输入密码不一致', 'error')
     return
   }
   loading.value = true
-  setTimeout(() => {
-    loading.value = false
+  try {
+    await request.post('/qingyun/register', {
+      phone: regForm.value.phone,
+      password: regForm.value.pwd,
+      name: regForm.value.name,
+      code: regForm.value.code,
+      role: parseInt(userRole.value)
+    })
     showToast('注册成功，请前往登录')
     setTimeout(() => isLoginPage.value = true, 1500)
-  }, 1500)
+  } catch (error) {
+    showToast(error.message || '注册失败', 'error')
+  } finally {
+    loading.value = false
+  }
 }
 </script>
 
